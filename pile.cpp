@@ -18,14 +18,18 @@ void pile::empiler(int val) {
     this->nb_operandes++;
 }
 
-void pile::depiler() {
+int pile::depiler() {
     if (this->vide()) {
-        cout << "La pile est vide" << endl;
+        cout << "La pile est vide, la valeur renvoyée est une valeur par defaut (-1)" << endl;
+        return -1;
     } else {
+        int val = this->head->valeur;
         operande *o = this->head;
         this->head = this->head->suivant;
         delete o;
         this->nb_operandes--;
+        cout << "La valeur depilée est " << val << endl;
+        return val;
     }
 }
 

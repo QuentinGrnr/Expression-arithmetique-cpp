@@ -9,7 +9,7 @@ class pile {
 public:
     pile();
     void empiler(int operande);
-    void depiler();
+    int depiler();
     bool vide();
     void afficher();
 };
