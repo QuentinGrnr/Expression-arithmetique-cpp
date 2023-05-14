@@ -1,5 +1,6 @@
 #include "pile.h"
 #include <iostream>
+#include <string>
 using namespace std;
 
 pile::pile() {
@@ -49,6 +50,26 @@ void pile::afficher() {
         while (o != nullptr) {
             cout << o->valeur << endl;
             o = o->suivant;
+        }
+    }
+}
+
+void pile::evaluer(string *expression) {
+    for (int i = 0;i < expression->length();i++) {
+        if (expression[i] == "+" || expression[i] == "-" || expression[i] == "*" || expression[i] == "/"){
+            int a = this->depiler();
+            int b = this->depiler();
+            if (expression[i] == "+") {
+                this->empiler(a + b);
+            } else if (expression[i] == "-") {
+                this->empiler(a - b);
+            } else if (expression[i] == "*") {
+                this->empiler(a * b);
+            } else if (expression[i] == "/") {
+                this->empiler(a / b);
+            }
+        } else {
+            this->empiler(stoi(expression[i]));
         }
     }
 }

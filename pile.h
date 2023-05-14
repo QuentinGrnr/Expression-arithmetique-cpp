@@ -1,6 +1,8 @@
 #ifndef EXPRESSION_ARITHM_TIQUE_CPP_PILE_H
 #define EXPRESSION_ARITHM_TIQUE_CPP_PILE_H
 #include "operande.h"
+#include <string>
+using namespace std;
 //premier entré premier sorti
 
 class pile {
@@ -12,6 +14,7 @@ public:
     int depiler();
     bool vide();
     void afficher();
+    void evaluer(string *expression);
 };
 
 #endif
