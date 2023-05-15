@@ -14,7 +14,7 @@ public:
     int depiler();
     bool vide();
     void afficher();
-    void evaluer(string *expression);
+    void evaluer(string expression);
 };
 
 #endif

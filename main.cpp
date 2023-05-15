@@ -4,9 +4,10 @@
 using namespace std;
 
 int main(){
-    pile p;
-    string expression;
-    cout << "Entrez une expression arithmetique postfixee" << endl;
+//=========================================Question 1=========================================
+    pile p; //creation d'une pile
+    string expression; //creation d'une chaine de caractere
+    cout << "Entrez une expression arithmetique suffixée" << endl;
     cin >> expression;
-    p.evaluer(&expression);
+    p.evaluer(expression); //appel de la methode évaluer qui évalue une expression suffixée
 }
