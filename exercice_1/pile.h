@@ -1,18 +1,19 @@
 #ifndef EXPRESSION_ARITHM_TIQUE_CPP_PILE_H
 #define EXPRESSION_ARITHM_TIQUE_CPP_PILE_H
-#include "operande.h"
+#include "caractere.h"
 #include <string>
 using namespace std;
 //premier entré premier sorti
 
 class pile {
-    operande *head;
-    int nb_operandes;
+    caractere *head;
+    int nb_caractere;
 public:
     pile();
-    void empiler(int operande);
-    int depiler();
+    void empiler(string operande);
+    string depiler();
     bool vide();
+    caractere *getHead();
     void afficher();
     void evaluer(string expression);
 };

@@ -5,30 +5,32 @@ using namespace std;
 
 pile::pile() {
     this->head = nullptr;
-    this->nb_operandes = 0;
+    this->nb_caractere = 0;
 }
 
-void pile::empiler(int val) {
+void pile::empiler(string val) {
     if (this->vide()) {
-        operande *o = new operande(val);
+        caractere *o = new caractere(val);
+        cout << "La valeur empilee est " << val << endl;
         this->head = o;
     } else {
-        operande *o = new operande(val, this->head);
+        caractere *o = new caractere(val, this->head);
         this->head = o;
+        cout << "La valeur empilee est " << val << endl;
     }
-    this->nb_operandes++;
+    this->nb_caractere++;
 }
 
-int pile::depiler() {
+string pile::depiler() {
     if (this->vide()) {
         cout << "La pile est vide, la valeur renvoyee est une valeur par defaut (-1)" << endl;
-        return -1;
+        return "error";
     } else {
-        int val = this->head->valeur;
-        operande *o = this->head;
+        string val = this->head->valeur;
+        caractere *o = this->head;
         this->head = this->head->suivant;
         delete o;
-        this->nb_operandes--;
+        this->nb_caractere--;
         cout << "La valeur depilee est " << val << endl;
         return val;
     }
@@ -46,7 +48,7 @@ void pile::afficher() {
     if (this->vide()) {
         cout << "La pile est vide" << endl;
     } else {
-        operande *o = this->head;
+        caractere *o = this->head;
         while (o != nullptr) {
             cout << o->valeur << endl;
             o = o->suivant;
@@ -58,20 +60,34 @@ void pile::evaluer(string expression) {
     for (int i = 0; i < expression.length(); i++) {
         cout << expression[i] << endl;
         if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '/') {
-            int a = this->depiler();
-            int b = this->depiler();
+            int b = stoi(this->depiler());
+            cout << "b = " << b << endl;
+            int a = stoi(this->depiler());
+            cout << "a = " << a << endl;
             if (expression[i] == '+') {
-                this->empiler(a + b);
+                this->empiler(to_string(a + b));
             } else if (expression[i] == '-') {
-                this->empiler(a - b);
+                this->empiler(to_string(a - b));
             } else if (expression[i] == '*') {
-                this->empiler(a * b);
+                this->empiler(to_string(a * b));
             } else if (expression[i] == '/') {
-                this->empiler(a / b);
+                this->empiler(to_string(a / b));
             }
         } else {
-            this->empiler(stoi(string(1, expression[i])));
+            this->empiler(string(1, expression[i])); //string(1, expression[i]) permet de convertir un char en string
         }
     }
     cout << "Le resultat est " << this->depiler() << endl;
 }
+
+caractere *pile::getHead() {
+    if (this->head != nullptr) {
+        cout << "La valeur au sommet de la pile est " << this->head->valeur << endl;
+        return this->head;
+    } else {
+        cout << "La pile est vide" << endl;
+        return nullptr;
+    }
+}
+
+
