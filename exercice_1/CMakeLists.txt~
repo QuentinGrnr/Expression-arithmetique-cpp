@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.23)
+project(TD2S2_POO)
+
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(..)
+
+add_executable(Expression-arithm-tique-cpp
+        ../main.cpp
+        caractere.cpp
+        caractere.h
+        pile.cpp
+        pile.h
+        ../exercice_2/outputChain.h
+        ../exercice_2/outputChain.cpp
+        ../exercice_3/noeud.h
+        ../exercice_3/noeud.cpp
+        )

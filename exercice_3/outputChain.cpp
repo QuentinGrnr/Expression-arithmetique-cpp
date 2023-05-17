@@ -59,14 +59,14 @@ void outputChain::InfToSuf(string expression) {
                     this->add(p.depiler()); // on ajoute les opérateurs de la pile à la chaine de sortie jusqu'à ce que la pile soit vide
                 }
             } else { //si l'entrée n'est pas vide c'est un opérande
-                cout << "2 : " << expression[i] << endl;
-                op = expression[i];
-                while (getpriority(expression[i+1]) ==-1 && expression[i+1] != '\0') { // tant que le caractére suivant est un opérande différant de vide = c'est un chiffre
-                    op += expression[i+1]; // on concaténe les chiffres pour former le nombre final
-                    i++;// on incrémente i pour passer au caractére suivant
+                    cout << "2 : " << expression[i] << endl;
+                    op = expression[i];
+                    while (getpriority(expression[i+1]) ==-1 && expression[i+1] != '\0') { // tant que le caractére suivant est un opérande différant de vide = c'est un chiffre
+                        op += expression[i+1]; // on concaténe les chiffres pour former le nombre final
+                        i++;// on incrémente i pour passer au caractére suivant
+                    }
+                    this->add(op + " "); //on ajoute directement le chiffre/nombre à la chaine de sortie suivit d'un espace pour séparer les opérandes
                 }
-                this->add(op + " "); //on ajoute directement le chiffre/nombre à la chaine de sortie suivit d'un espace pour séparer les opérandes
-            }
         } else if (!p.vide()){ //si la pile n'est pas vide et que c'est un opérateur
             if (getpriority(expression[i])  == 3) { // si expression[i] (que l'on passe en string) est un ^ soit le seul oprérateur (utilisé ici) avec une associativité à droite en cpp
                 cout << "3 : " << expression[i] << endl;
@@ -87,10 +87,10 @@ void outputChain::InfToSuf(string expression) {
             } else { // pour tout les autres opérateurs qui on une associativité de gauche a droite
                 cout << "6 : " << expression[i] << endl;
                 while (!p.vide() && getpriority(expression[i])  <= getpriority(p.getHead()->valeur[0])) {// tant que l'opérateur au sommet de la pile est strictement plus prioritaire que celui de l'expression
-                    cout << "vide : " << p.vide() << endl;
-                    cout << "val1 : " << getpriority(expression[i])  << endl;
-                    cout << "val2 : " << getpriority(p.getHead()->valeur[0]) << endl;
-                    this->add(p.depiler()); // on ajoute l'opérateur de la pile à la chaine de sortie
+                        cout << "vide : " << p.vide() << endl;
+                        cout << "val1 : " << getpriority(expression[i])  << endl;
+                        cout << "val2 : " << getpriority(p.getHead()->valeur[0]) << endl;
+                        this->add(p.depiler()); // on ajoute l'opérateur de la pile à la chaine de sortie
                 }
                 p.empiler(string(1, expression[i])); // on empile l'opérateur de l'expression
             }

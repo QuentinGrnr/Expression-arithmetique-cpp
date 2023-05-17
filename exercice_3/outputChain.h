@@ -8,11 +8,11 @@ class outputChain {
     caractere *head;
     caractere *tail;
     int nb_caracteres;
-public:
-    outputChain();
-    void add (string op);
-    void afficher();
-    void InfToSuf(string expression);
+    public:
+        outputChain();
+        void add (string op);
+        void afficher();
+        void InfToSuf(string expression);
 };
 
 #endif
