@@ -8,31 +8,67 @@ pile::pile() {
     this->nb_caractere = 0;
 }
 
-void pile::empiler(string val) {
+void pile::empiler(noeud *n) {
     if (this->vide()) {
-        caractere *o = new caractere(val);
-        cout << "La valeur empilee est " << val << endl;
-        this->head = o;
+        noeud *n = new noeud(op);
+        cout << "La valeur empilee est " << op << endl;
+        this->head = n;
     } else {
-        caractere *o = new caractere(val, this->head);
-        this->head = o;
+        noeud *n = new noeud(op, this->head);
+        this->head = n;
+        cout << "La valeur empilee est " << op << endl;
+    }
+    this->nb_caractere++;
+}
+
+void pile::empiler(float val) {
+    if (this->vide()) {
+        noeud *n = new noeud(val);
+        cout << "La valeur empilee est " << val << endl;
+        this->head = n;
+    } else {
+        noeud *n = new noeud(val, this->head);
+        this->head = n;
         cout << "La valeur empilee est " << val << endl;
     }
     this->nb_caractere++;
 }
 
-string pile::depiler() {
+char pile::depiler(char type) {
+    if (type == 'o'){
+       return
+    } else {
+
+    }
+}
+
+float pile::depiler(float operande) {
+    return 0;
+}
+
+char pile::depiler() {
     if (this->vide()) {
         cout << "La pile est vide, la valeur renvoyee est une valeur par defaut (-1)" << endl;
-        return "error";
+        return 'e';
     } else {
-        string val = this->head->valeur;
-        caractere *o = this->head;
-        this->head = this->head->suivant;
-        delete o;
-        this->nb_caractere--;
-        cout << "La valeur depilee est " << val << endl;
-        return val;
+        if (this->head->type == 'o'){
+            char val = this->head->ope;
+            noeud *n = this->head;
+            this->head = this->head->suivant;
+            delete n;
+            this->nb_caractere--;
+            cout << "La valeur depilee est " << val << endl;
+            return val;
+        } else {
+            float val = this->head->val;
+            noeud *n = this->head;
+            this->head = this->head->suivant;
+            delete n;
+            this->nb_caractere--;
+            cout << "La valeur depilee est " << val << endl;
+            return val;
+        }
+
     }
 }
 
@@ -96,5 +132,6 @@ caractere *pile::getHead() {
         return nullptr;
     }
 }
+
 
 

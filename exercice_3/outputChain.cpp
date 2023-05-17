@@ -99,5 +99,6 @@ void outputChain::InfToSuf(string expression) {
             p.empiler(string(1, expression[i])); // on empile l'opérateur de l'expression
         }
     }
+    cout << "l'expression sufixée est : ";
     this->afficher();
 }
