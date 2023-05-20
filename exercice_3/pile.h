@@ -10,9 +10,8 @@ class pile {
     int nb_caractere;
 public:
     pile();
-    void empiler(char operateur);
-    void empiler(float operande);
-    char depiler(char type);
+    void empiler(noeud *n);
+    noeud depiler();
     bool vide();
     noeud *getHead();
     void afficher();

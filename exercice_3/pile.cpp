@@ -10,40 +10,50 @@ pile::pile() {
 
 void pile::empiler(noeud *n) {
     if (this->vide()) {
-        noeud *n = new noeud(op);
-        cout << "La valeur empilee est " << op << endl;
+        cout << "La valeur empilee est ";
+        if (n->type == 'o') {
+            cout << n->ope << endl;
+        } else {
+            cout << n->val << endl;
+        }
         this->head = n;
     } else {
-        noeud *n = new noeud(op, this->head);
+        n->suivant = this->head;
         this->head = n;
-        cout << "La valeur empilee est " << op << endl;
+        cout << "La valeur empilee est ";
+        if (n->type == 'o') {
+            cout << n->ope << endl;
+        } else {
+            cout << n->val << endl;
+        }
     }
     this->nb_caractere++;
 }
 
-void pile::empiler(float val) {
+noeud pile::depiler(){
     if (this->vide()) {
-        noeud *n = new noeud(val);
-        cout << "La valeur empilee est " << val << endl;
-        this->head = n;
+        cout << "La pile est vide, la valeur renvoyee est une valeur par defaut (-1)" << endl;
+        return 'e';
     } else {
-        noeud *n = new noeud(val, this->head);
-        this->head = n;
-        cout << "La valeur empilee est " << val << endl;
+        if (this->head->type == 'o'){
+            char ope = this->head->ope;
+            noeud *n = this->head;
+            this->head = this->head->suivant;
+            delete n;
+            //constructeur par copie pour return noeud
+            this->nb_caractere--;
+            cout << "La valeur depilee est " << val << endl;
+            return val;
+        } else {
+            float val = this->head->val;
+            noeud *n = this->head;
+            this->head = this->head->suivant;
+            delete n;
+            this->nb_caractere--;
+            cout << "La valeur depilee est " << val << endl;
+            return val;
+        }
     }
-    this->nb_caractere++;
-}
-
-char pile::depiler(char type) {
-    if (type == 'o'){
-       return
-    } else {
-
-    }
-}
-
-float pile::depiler(float operande) {
-    return 0;
 }
 
 char pile::depiler() {
