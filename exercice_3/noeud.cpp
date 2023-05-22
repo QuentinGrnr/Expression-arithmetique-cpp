@@ -28,6 +28,7 @@ noeud::~noeud() {
     if (fg != nullptr && fd != nullptr) {
         delete fg;
         delete fd;
+        delete suivant;
     }
 }
 

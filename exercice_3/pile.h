@@ -11,7 +11,7 @@ class pile {
 public:
     pile();
     void empiler(noeud *n);
-    noeud depiler();
+    noeud* depiler();
     bool vide();
     noeud *getHead();
     void afficher();
