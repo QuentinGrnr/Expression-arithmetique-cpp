@@ -1,18 +1,19 @@
 #ifndef TD2S2_POO_OUTPUTCHAIN_H
 #define TD2S2_POO_OUTPUTCHAIN_H
-#include "caractere.h"
 #include <iostream>
+#include "noeud.h"
 using namespace std;
 
 class outputChain {
-    caractere *head;
-    caractere *tail;
+    noeud *head;
+    noeud *tail;
     int nb_caracteres;
     public:
         outputChain();
-        void add (string op);
+        void add (noeud *n);
         void afficher();
         void InfToSuf(string expression);
+        friend class outputChain;
 };
 
 #endif

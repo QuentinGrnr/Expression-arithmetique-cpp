@@ -5,18 +5,35 @@ noeud::noeud() {
     fd = nullptr;
 }
 
-noeud::noeud(char ope) {
-    this->type = 'o';
-    this->ope = ope;
-    fg = nullptr;
-    fd = nullptr;
+int getpriority (char op) {
+    if (op == '('){
+        return 0; //parenthèse ouvrante
+    }else if (op == '+' || op == '-'){
+        return 1; //addition, soustraction
+    } else if (op == '*' || op == '/' || op == '%'){
+        return 2; //multiplication, division, modulo
+    } else if (op == '^'){
+        return 3; //puissance (associativité à droite)
+    }else if (op == ')') {
+        return 4; //parenthèse fermante
+    } else {
+        return -1; //l'op donné est un operande
+    }
 }
 
-noeud::noeud(float val) {
-    this->type = 'f';
-    this->val = val;
-    fg = nullptr;
-    fd = nullptr;
+noeud::noeud(char caractere) {
+    if (getpriority(caractere)==-1){
+        this->type = 'f';
+        this->val = caractere;
+        fg = nullptr;
+        fd = nullptr;
+    } else {
+        this->type = 'o';
+        this->ope = caractere;
+        fg = nullptr;
+        fd = nullptr;
+    }
+
 }
 
 void noeud::setfgfd(noeud *fg, noeud *fd) {
@@ -30,20 +47,4 @@ noeud::~noeud() {
         delete fd;
         delete suivant;
     }
-}
-
-noeud::noeud(char ope, noeud *suivant) {
-    this->type = 'o';
-    this->ope = ope;
-    this->suivant = suivant;
-    fg = nullptr;
-    fd = nullptr;
-}
-
-noeud::noeud(float val, noeud *suivant) {
-    this->type = 'f';
-    this->val = val;
-    this->suivant = suivant;
-    fg = nullptr;
-    fd = nullptr;
 }

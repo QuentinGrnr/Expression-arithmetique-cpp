@@ -9,6 +9,7 @@ class arbre {
 public:
     arbre();
     arbre(string expressioninf);
+    noeud* createnode(char caractere);
 };
 
 

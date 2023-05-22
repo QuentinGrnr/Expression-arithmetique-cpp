@@ -11,15 +11,13 @@ class noeud {
 
 public:
     noeud();
-    noeud(char ope);
-    noeud(float val);
-    noeud(char ope,noeud *suivant);
-    noeud(float val,noeud *suivant);
+    noeud(char caractere);
     void setfgfd(noeud *fg,noeud *fd);
 
     ~noeud();
 
     friend class arbre;
+    friend class outputChain;
     friend class pile;
 };
 

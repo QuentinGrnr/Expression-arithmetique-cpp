@@ -7,8 +7,6 @@ include_directories(..)
 
 add_executable(exercice_3
         main.cpp
-        caractere.cpp
-        caractere.h
         pile.cpp
         pile.h
         outputChain.h
