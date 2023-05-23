@@ -1,4 +1,8 @@
 #include "noeud.h"
+#include <iostream>
+#include <string>
+#include <cstdlib>
+using namespace std;
 
 noeud::noeud() {
     fg = nullptr;
@@ -24,7 +28,7 @@ int getpriority (char op) {
 noeud::noeud(char caractere) {
     if (getpriority(caractere)==-1){
         this->type = 'f';
-        this->val = caractere;
+        this->val = atof(string(1, caractere).c_str());
         fg = nullptr;
         fd = nullptr;
     } else {

@@ -13,7 +13,6 @@ class outputChain {
         void add (noeud *n);
         void afficher();
         void InfToSuf(string expression);
-        friend class outputChain;
 };
 
 #endif
