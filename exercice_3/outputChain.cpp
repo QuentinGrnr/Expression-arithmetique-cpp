@@ -12,42 +12,42 @@ outputChain::outputChain() {
 }
 
 void outputChain::add(noeud *newN) {
-    if (this->head == nullptr) {
+    if (this->nb_caracteres == 0) {
         if (newN->type== 'o') {
             this->head = newN;
             this->tail = newN;
             this->nb_caracteres++;
-            cout << this->head->ope << " a ete empile" <<endl;
+            cout << this->head->ope << " a ete ajoute" <<endl;
         } else {
             this->head = newN;
             this->tail = newN;
             this->nb_caracteres++;
-            cout << this->head->val << " a ete empile" <<endl;
+            cout << this->head->val << " a ete ajoute" <<endl;
         }
     } else {
         if (newN->type == 'o') {
-            this->head->suivant = newN;
+            this->head->Osuivant = newN;
             this->nb_caracteres++;
-            this->head = this->head->suivant;
-            cout << this->head->ope << " a ete empile" <<endl;
+            this->head = this->head->Osuivant;
+            cout << this->head->ope << " a ete ajoute" <<endl;
         } else {
-            this->head->suivant = newN;
+            this->head->Osuivant = newN;
             this->nb_caracteres++;
-            this->head = this->head->suivant;
-            cout << this->head->val << " a ete empile" <<endl;
+            this->head = this->head->Osuivant;
+            cout << this->head->val << " a ete ajoute" <<endl;
         }
     }
 }
 
 void outputChain::afficher() {
     noeud *n = this->tail;
-    while (n != nullptr) {
+    for (int i = 0; i < this->nb_caracteres;i++) {
         if (n->type == 'o') {
             cout << n->ope;
         } else {
             cout << n->val;
         }
-        n = n->suivant;
+        n = n->Osuivant;
     }
     cout << endl;
 }
@@ -76,8 +76,8 @@ void outputChain::InfToSuf(string expression) {
         if (expression[i] == '\0') {
             cout << "1 : "<< expression[i] << endl;
             while (!p.vide()) { // tant que la pile n'est pas vide
-                this->add(
-                        p.depiler()); // on ajoute les opérateurs de la pile à la chaine de sortie jusqu'à ce que la pile soit vide
+                cout << "in" << endl;
+                this->add(p.depiler()); // on ajoute les opérateurs de la pile à la chaine de sortie jusqu'à ce que la pile soit vide
             }
             continue;
         }
@@ -85,10 +85,9 @@ void outputChain::InfToSuf(string expression) {
         if (n->type == 'f') {
             cout << "2-1 : "<< n->val << endl;
             op = expression[i];
-            while (getopPriority(expression[i + 1]) == -1 && expression[i + 1] !=
-                                                           '\0') { // tant que le caractére suivant est un opérande différant de vide = c'est un chiffre
+            while (getopPriority(expression[i + 1]) == -1 && expression[i + 1] !='\0') { // tant que le caractére Osuivant est un opérande différant de vide = c'est un chiffre
                 op += expression[i + 1]; // on concaténe les chiffres pour former le nombre final
-                i++;// on incrémente i pour passer au caractére suivant
+                i++;// on incrémente i pour passer au caractére Osuivant
             }
             n->val = stof(
                     op); // on convertit la chaine de caractére en float pour passer la nouvelle valeur à la variable val du noeud
@@ -129,4 +128,12 @@ void outputChain::InfToSuf(string expression) {
             p.empiler(n); // on empile l'opérateur de l'expression
         }
     }
+}
+
+noeud *outputChain::gettail() {
+    return tail;
+}
+
+int outputChain::getcount() {
+    return this->nb_caracteres;
 }

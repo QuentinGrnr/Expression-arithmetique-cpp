@@ -7,8 +7,8 @@ class noeud {
     char ope;
     float val;
     noeud *fg,*fd;
-    noeud *suivant; // facultatif mais permet une lecture plus facile de la pile
-
+    noeud *Osuivant; // Suivant dans la file d'outputchain
+    noeud *Psuivant; // Suivant dans la pile
 public:
     noeud();
     noeud(char caractere);

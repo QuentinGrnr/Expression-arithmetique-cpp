@@ -13,6 +13,8 @@ class outputChain {
         void add (noeud *n);
         void afficher();
         void InfToSuf(string expression);
+        noeud *gettail();
+        int getcount();
 };
 
 #endif

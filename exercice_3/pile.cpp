@@ -18,7 +18,7 @@ void pile::empiler(noeud *n) {
         }
         this->head = n;
     } else {
-        n->suivant = this->head;
+        n->Psuivant = this->head;
         this->head = n;
         cout << "La valeur empilee est ";
         if (n->type == 'o') {
@@ -36,7 +36,7 @@ noeud* pile::depiler(){
         return nullptr;
     } else {
         noeud *n = this->head;
-        this->head = this->head->suivant;
+        this->head = this->head->Psuivant;
         this->nb_caractere--;
         cout << "La valeur depilee est ";
         if (n->type == 'o') {
@@ -50,7 +50,7 @@ noeud* pile::depiler(){
 
 
 bool pile::vide() {
-    if (this->head == nullptr) {
+    if (this->nb_caractere==0 ) {
         return true;
     } else {
         return false;
@@ -68,13 +68,13 @@ void pile::afficher() {
             } else {
                 cout << n->val << endl;
             }
-            n = n->suivant;
+            n = n->Psuivant;
         }
     }
 }
 
 noeud *pile::getHead() {
-    if (this->head != nullptr) {
+    if (!this->vide()) {
         if (this->head->type == 'o') {
             cout << "La valeur au sommet de la pile est " << this->head->ope << endl;
         } else {
@@ -86,6 +86,7 @@ noeud *pile::getHead() {
         return nullptr;
     }
 }
+
 
 
 

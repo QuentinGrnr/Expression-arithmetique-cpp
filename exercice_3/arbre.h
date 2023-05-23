@@ -9,7 +9,8 @@ class arbre {
 public:
     arbre();
     arbre(string expressioninf);
-    noeud* createnode(char caractere);
+    void afficher();
+    void afficherRecursive(noeud *noeudActuel, string prefixe, bool estDernier);
 };
 
 

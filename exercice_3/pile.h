@@ -16,6 +16,7 @@ public:
     noeud *getHead();
     void afficher();
     void evaluer(string expression);
+
 };
 
 #endif

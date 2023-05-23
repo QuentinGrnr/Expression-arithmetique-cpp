@@ -9,7 +9,7 @@ noeud::noeud() {
     fd = nullptr;
 }
 
-int getpriority (char op) {
+int getCharPriority (char op) { //cette 2nd version de getpriority permet d'obtenir la priorité d'un operateur avant que ce dernier soit dans un noeud
     if (op == '('){
         return 0; //parenthèse ouvrante
     }else if (op == '+' || op == '-'){
@@ -26,7 +26,7 @@ int getpriority (char op) {
 }
 
 noeud::noeud(char caractere) {
-    if (getpriority(caractere)==-1){
+    if (getCharPriority(caractere)==-1){
         this->type = 'f';
         this->val = atof(string(1, caractere).c_str());
         fg = nullptr;
@@ -40,15 +40,10 @@ noeud::noeud(char caractere) {
 
 }
 
-void noeud::setfgfd(noeud *fg, noeud *fd) {
-    this->fg = fg;
-    this->fd = fd;
-}
-
 noeud::~noeud() {
     if (fg != nullptr && fd != nullptr) {
         delete fg;
         delete fd;
-        delete suivant;
+        delete Psuivant;
     }
 }
