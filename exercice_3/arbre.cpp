@@ -37,21 +37,15 @@ void arbre::afficher() {
     }
 }
 
-void arbre::afficherRecursive(noeud *noeudActuel, string prefixe, bool estDernier) {
-    cout << prefixe;
-    cout << (estDernier ? "--- " : "+-- ");
-
-    // Affichage du nœud
+void arbre::afficherRecursive(noeud *noeudActuel, string miseEnPage, bool estDernier) {
+    cout << miseEnPage;
+    cout << "|-- ";
     if (noeudActuel->type == 'o') {
         cout << "Operateur: " << noeudActuel->ope << endl;
     } else if (noeudActuel->type == 'f') {
         cout << "Valeur: " << noeudActuel->val << endl;
     }
-
-    // Construction du préfixe pour les prochains nœuds
-    string nouveauPrefixe = prefixe + (estDernier ? "    " : "|   ");
-
-    // Affichage des nœuds fils
+    string nouveauPrefixe = miseEnPage + (estDernier ? "    " : "|   ");
     if (noeudActuel->fg != nullptr) {
         afficherRecursive(noeudActuel->fg, nouveauPrefixe, false);
     }

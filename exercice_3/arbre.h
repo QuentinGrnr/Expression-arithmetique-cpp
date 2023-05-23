@@ -10,7 +10,7 @@ public:
     arbre();
     arbre(string expressioninf);
     void afficher();
-    void afficherRecursive(noeud *noeudActuel, string prefixe, bool estDernier);
+    void afficherRecursive(noeud *noeudActuel, string miseEnPage, bool estDernier);
 };
 
 
