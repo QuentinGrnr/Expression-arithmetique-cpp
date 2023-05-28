@@ -11,6 +11,8 @@ public:
     arbre(string expressioninf);
     void afficher();
     void afficherRecursive(noeud *noeudActuel, string miseEnPage, bool estDernier);
+
+    ~arbre();
 };
 
 
