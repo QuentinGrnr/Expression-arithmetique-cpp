@@ -4,43 +4,26 @@
 #include <cstdlib>
 using namespace std;
 
-noeud::noeud() {
+noeud::noeud() { //constructeur par défaut
     fg = nullptr;
     fd = nullptr;
 }
 
-int getCharPriority (char op) { //cette 2nd version de getpriority permet d'obtenir la priorité d'un operateur avant que ce dernier soit dans un noeud
-    if (op == '('){
-        return 0; //parenthèse ouvrante
-    }else if (op == '+' || op == '-'){
-        return 1; //addition, soustraction
-    } else if (op == '*' || op == '/' || op == '%'){
-        return 2; //multiplication, division, modulo
-    } else if (op == '^'){
-        return 3; //puissance (associativité à droite)
-    }else if (op == ')') {
-        return 4; //parenthèse fermante
-    } else {
-        return -1; //l'op donné est un operande
-    }
-}
-
-noeud::noeud(char caractere) {
-    if (getCharPriority(caractere)==-1){
+noeud::noeud(char caractere) { //constructeur avec paramètre
+    if (caractere != '+' && caractere != '-' && caractere != '*' && caractere != '/' && caractere != '%' && caractere != '^' && caractere != '(' && caractere != ')'){ //si le caractère est un chiffre
         this->type = 'f';
-        this->val = atof(string(1, caractere).c_str());
+        this->val = atof(string(1, caractere).c_str()); //conversion du caractère en string puis en float
         fg = nullptr;
         fd = nullptr;
-    } else {
+    } else { //si le caractère est un opérateur
         this->type = 'o';
-        this->ope = caractere;
+        this->ope = caractere; //on stocke l'opérateur dans la variable ope
         fg = nullptr;
         fd = nullptr;
     }
 }
 
-noeud::~noeud() {
+noeud::~noeud() { //destructeur de noeud
     delete fg;
     delete fd;
-    cout << "Destruction du noeud terminee" << endl;
 }

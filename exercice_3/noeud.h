@@ -7,14 +7,13 @@ class noeud {
     char ope;
     float val;
     noeud *fg,*fd;
-    noeud *Osuivant; // Suivant dans la file d'outputchain
+    noeud *Osuivant; // Suivant dans la file d'outputchain (pour la transformation d'infixe en sufixe)
     noeud *Psuivant; // Suivant dans la pile
 public:
-    noeud();
-    noeud(char caractere);
-    void setfgfd(noeud *fg,noeud *fd);
+    noeud(); //constructeur par défaut
+    noeud(char caractere); //constructeur avec paramètre
 
-    ~noeud();
+    ~noeud(); //destructeur de noeud
 
     friend class arbre;
     friend class outputChain;

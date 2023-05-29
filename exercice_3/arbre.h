@@ -5,18 +5,21 @@
 using namespace std;
 
 class arbre {
-    noeud *racine;
+    noeud *racine;  //racine de l'arbre
 public:
-    arbre();
-    arbre(string expressioninf);
-    void afficher();
-    void afficherRecursive(noeud *noeudActuel, string miseEnPage, bool estDernier);
-    float evaluer(noeud* noeudActuel);
-    float evaluer();
-    void afficherInfixe();
-    void afficherInfixe(noeud* noeudActuel);
+    arbre(); //constructeur sans argument
+    arbre(string expressioninf); //constructeur a partir d'une expression infixe
 
-    ~arbre();
+    void afficher(); //afficher l'arbre
+    void afficherRecursive(noeud *noeudActuel, string miseEnPage, bool estDernier); //afficher l'arbre recursivement a partir d'un noeud
+
+    float evaluer(); //evaluer l'arbre
+    float evaluer(noeud* noeudActuel); //evaluer l'arbre recursivement a partir d'un noeud
+
+    void afficherInfixe(); //afficher l'arbre en notation infixe
+    void afficherInfixe(noeud* noeudActuel); //afficher l'arbre en notation infixe recursivement a partir d'un noeud
+
+    ~arbre(); //destructeur
 };
 
 

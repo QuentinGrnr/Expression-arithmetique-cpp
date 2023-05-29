@@ -3,34 +3,22 @@
 #include <string>
 using namespace std;
 
-pile::pile() {
+pile::pile() { //constructeur sans argument
     this->head = nullptr;
     this->nb_caractere = 0;
 }
 
-void pile::empiler(noeud *n) {
+void pile::empiler(noeud *n) { //ajouter un noeud au sommet de la pile
     if (this->vide()) {
-        cout << "La valeur empilee est ";
-        if (n->type == 'o') {
-            cout << n->ope << endl;
-        } else {
-            cout << n->val << endl;
-        }
         this->head = n;
     } else {
-        n->Psuivant = this->head;
-        this->head = n;
-        cout << "La valeur empilee est ";
-        if (n->type == 'o') {
-            cout << n->ope << endl;
-        } else {
-            cout << n->val << endl;
-        }
+        n->Psuivant = this->head; //le noeud suivant du noeud a empiler est le noeud au sommet de la pile
+        this->head = n; //le noeud a empiler devient le noeud au sommet de la pile
     }
     this->nb_caractere++;
 }
 
-noeud* pile::depiler(){
+noeud* pile::depiler(){ //retirer le noeud au sommet de la pile et le retourner
     if (this->vide()) {
         cout << "La pile est vide, la valeur renvoyee est nullptr" << endl;
         return nullptr;
@@ -38,12 +26,6 @@ noeud* pile::depiler(){
         noeud *n = this->head;
         this->head = this->head->Psuivant;
         this->nb_caractere--;
-        cout << "La valeur depilee est ";
-        if (n->type == 'o') {
-            cout << n->ope << endl;
-        } else {
-            cout << n->val << endl;
-        }
         return n;
     }
 }
@@ -75,11 +57,6 @@ void pile::afficher() {
 
 noeud *pile::getHead() {
     if (!this->vide()) {
-        if (this->head->type == 'o') {
-            cout << "La valeur au sommet de la pile est " << this->head->ope << endl;
-        } else {
-            cout << "La valeur au sommet de la pile est " << this->head->val << endl;
-        }
         return this->head;
     } else {
         cout << "La pile est vide" << endl;

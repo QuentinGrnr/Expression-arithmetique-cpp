@@ -4,10 +4,16 @@ using namespace std;
 
 int main(){
 cout  << "=========================================Question 3========================================="<<endl;
-    arbre *A = new arbre ("956*8+9-856-(8^5)/9");
+    cout << "entrez une expression infixe" << endl;
+    string expinf;
+    cin >> expinf;
+    arbre *A = new arbre (expinf);
+    cout << endl;
     A->afficher();
-    cout << A->evaluer() << endl;
+    cout << endl;
+    cout << "l'expression donnee est egale a : " << A->evaluer() << endl;
+    cout << endl;
     A->afficherInfixe();
+    cout << endl;
     delete A;
 }
-     //9568*9+8565^8--
