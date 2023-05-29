@@ -11,6 +11,10 @@ public:
     arbre(string expressioninf);
     void afficher();
     void afficherRecursive(noeud *noeudActuel, string miseEnPage, bool estDernier);
+    float evaluer(noeud* noeudActuel);
+    float evaluer();
+    void afficherInfixe();
+    void afficherInfixe(noeud* noeudActuel);
 
     ~arbre();
 };

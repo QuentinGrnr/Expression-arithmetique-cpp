@@ -7,7 +7,7 @@ using namespace std;
 class outputChain {
     noeud *head;
     noeud *tail;
-    int nb_caracteres;
+    int nb_noeuds;
     public:
         outputChain();
         void add (noeud *n);

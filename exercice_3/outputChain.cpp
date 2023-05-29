@@ -8,31 +8,31 @@ using namespace std;
 outputChain::outputChain() {
     this->head = nullptr;
     this->tail = nullptr;
-    this->nb_caracteres = 0;
+    this->nb_noeuds = 0;
 }
 
 void outputChain::add(noeud *newN) {
-    if (this->nb_caracteres == 0) {
+    if (this->nb_noeuds == 0) {
         if (newN->type== 'o') {
             this->head = newN;
             this->tail = newN;
-            this->nb_caracteres++;
+            this->nb_noeuds++;
             cout << this->head->ope << " a ete ajoute" <<endl;
         } else {
             this->head = newN;
             this->tail = newN;
-            this->nb_caracteres++;
+            this->nb_noeuds++;
             cout << this->head->val << " a ete ajoute" <<endl;
         }
     } else {
         if (newN->type == 'o') {
             this->head->Osuivant = newN;
-            this->nb_caracteres++;
+            this->nb_noeuds++;
             this->head = this->head->Osuivant;
             cout << this->head->ope << " a ete ajoute" <<endl;
         } else {
             this->head->Osuivant = newN;
-            this->nb_caracteres++;
+            this->nb_noeuds++;
             this->head = this->head->Osuivant;
             cout << this->head->val << " a ete ajoute" <<endl;
         }
@@ -41,7 +41,7 @@ void outputChain::add(noeud *newN) {
 
 void outputChain::afficher() {
     noeud *n = this->tail;
-    for (int i = 0; i < this->nb_caracteres;i++) {
+    for (int i = 0; i < this->nb_noeuds; i++) {
         if (n->type == 'o') {
             cout << n->ope;
         } else {
@@ -98,10 +98,11 @@ void outputChain::InfToSuf(string expression) {
             if (getopPriority(expression[i]) ==
                 3) { // si expression[i] (que l'on passe en string) est un ^ soit le seul oprérateur (utilisé ici) avec une associativité à droite en cpp
                 cout << "3 : "<< n->ope << endl;
-                while (getopPriority(expression[i]) < getopPriority(
+                while (!p.vide() &&  getopPriority(expression[i]) < getopPriority(
                         p.getHead()->ope)) { // tant que l'opérateur au sommet de la pile est strictement plus prioritaire que celui de l'expression
                     this->add(p.depiler()); // on ajoute l'opérateur de la pile à la chaine de sortie
                 }
+                p.empiler(n); // on empile l'opérateur de l'expression
             } else if (getopPriority(expression[i]) ==
                        0) { // si expression[i] (que l'on passe en string) est une parenthèse ouvrante
                 cout << "4 : "<< n->ope << endl;
@@ -135,5 +136,5 @@ noeud *outputChain::gettail() {
 }
 
 int outputChain::getcount() {
-    return this->nb_caracteres;
+    return this->nb_noeuds;
 }
