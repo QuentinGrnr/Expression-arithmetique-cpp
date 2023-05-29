@@ -56,6 +56,7 @@ void arbre::afficherRecursive(noeud *noeudActuel, string miseEnPage, bool estDer
 
 arbre::~arbre() {
     delete racine;
-    cout << "Destruction de l'arbre effectuee'" << endl;
+    cout << "Destruction de l'arbre terminee" << endl;
 }
+
 

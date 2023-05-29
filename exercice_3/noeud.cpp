@@ -40,27 +40,7 @@ noeud::noeud(char caractere) {
 }
 
 noeud::~noeud() {
-    if (this->type == 'o') {
-        cout << this->ope<< endl;
-    } else if (this->type == 'f') {
-        cout << this->val<< endl;
-    }
-    if (fg != nullptr) {
-        if (fg->type == 'o') {
-            cout << fg->ope << endl;
-        } else if (fg->type == 'f') {
-            cout << fg->val << endl;
-        }
-        delete fg;
-    }
-    if (fd != nullptr) {
-        if (fd->type == 'o') {
-            cout << fd->ope<< endl;
-        } else if (fd->type == 'f') {
-            cout << fd->val<< endl;
-        }
-        delete fd;
-    }
-    cout << "Destruction du noeud effectuee" << endl;
-    delete Psuivant;
+    delete fg;
+    delete fd;
+    cout << "Destruction du noeud terminee" << endl;
 }
