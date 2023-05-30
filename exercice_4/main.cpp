@@ -3,7 +3,7 @@
 using namespace std;
 
 int main(){
-cout  << "=========================================Question 3========================================="<<endl;
+cout  << "=========================================Question 4========================================="<<endl;
     cout << "entrez une expression infixe" << endl;
     string expinf;
     cin >> expinf;
@@ -11,9 +11,9 @@ cout  << "=========================================Question 3===================
     cout << endl;
     A->afficher();
     cout << endl;
-    cout << "l'expression donnee est egale a : " << A->evaluer() << endl;
-    cout << endl;
+    cout << "expression infixe de votre arbre : ";
     A->afficherInfixe();
     cout << endl;
+    A->deriver();
     delete A;
 }

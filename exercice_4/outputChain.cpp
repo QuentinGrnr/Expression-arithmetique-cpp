@@ -13,37 +13,28 @@ outputChain::outputChain() { //constructeur sans argument
 
 void outputChain::add(noeud *newN) { //ajouter un noeud a la chaine
     if (this->nb_noeuds == 0) { //si la chaine est vide
-        if (newN->type== 'o') {
             this->tail = newN;
             this->head = newN;
             this->nb_noeuds++;
-        } else {
-            this->tail = newN;
-            this->head = newN;
-            this->nb_noeuds++;
-        }
     } else { //si la chaine n'est pas vide
-        if (newN->type == 'o') {
-            this->tail->Osuivant = newN;
-            this->nb_noeuds++;
-            this->tail = this->tail->Osuivant;
-        } else {
-            this->tail->Osuivant = newN;
-            this->nb_noeuds++;
-            this->tail = this->tail->Osuivant;
-        }
+        this->tail->Osuivant = newN;
+        this->nb_noeuds++;
+        this->tail = this->tail->Osuivant;
     }
 }
 
 void outputChain::afficher() { //afficher la chaine
-     cout << "Votre expression suffixe : ";
+    cout << "Votre expression suffixe : ";
     noeud *n = this->head; //pointeur vers le premier noeud de la chaine
     for (int i = 0; i < this->nb_noeuds; i++) { //parcourir la chaine
         if (n->type == 'o') {
             cout << n->ope;
-        } else {
+        } else if (n->type == 'v'){
+            cout << n->var;
+        } else if (n->type == 'r'){
             cout << n->val;
         }
+        cout << " ";
         n = n->Osuivant;
     }
     cout << endl;
@@ -60,6 +51,8 @@ int getopPriority (char op) { //retourner la priorité d'un opérateur donné (0
         return 3; //puissance (associativité à droite)
     }else if (op == ')') {
         return 4; //parenthèse fermante
+    } else if (op == 'X' || op == 'Y' || op == 'Z') {
+        return 5; //l'op donné est une variable
     } else {
         return -1; //l'op donné est un operande ou un vide
     }
@@ -77,7 +70,7 @@ void outputChain::InfToSuf(string expression) {
             continue; //on passe à l'itération suivante (soit normalement la fin de la boucle)
         }
         noeud *n = new noeud(expression[i]); //créer un nouveau noeud avec le caractére courant de l'expression
-        if (n->type == 'f') {
+        if (n->type == 'r') {
             op = expression[i];
             while (getopPriority(expression[i + 1]) == -1 && expression[i + 1] !='\0') { // tant que le caractére Osuivant est un opérande différant de vide = c'est un chiffre
                 op += expression[i + 1]; // on concaténe les chiffres pour former le nombre final
@@ -86,8 +79,10 @@ void outputChain::InfToSuf(string expression) {
             n->val = stof(
                     op); // on convertit la chaine de caractére en float pour passer la nouvelle valeur à la variable val du noeud
                     this->add(
-                    n); //on ajoute directement le chiffre/nombre à la chaine de sortie suivit d'un espace pour séparer les opérandes
-        } else if (!p.vide()) {
+                    n); //on ajoute directement le chiffre/nombre à la chaine de sortie
+        } else if ( n->type == 'v' ){
+            this->add(n); //on ajoute directement la variable à la chaine de sortie
+        }else if (!p.vide()) {
             if (getopPriority(expression[i]) ==
                 3) { // si expression[i] (que l'on passe en string) est un ^ soit le seul oprérateur (utilisé ici) avec une associativité à droite en cpp
                 while (!p.vide() &&  getopPriority(expression[i]) < getopPriority(

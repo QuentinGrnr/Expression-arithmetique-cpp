@@ -3,7 +3,8 @@
 
 
 class noeud {
-    char type; // 'o' pour operateur, 'f' pour valeur
+    char type; // 'o' pour operateur, 'r' pour valeur et 'v' pour variable
+    char var;
     char ope;
     float val;
     noeud *fg,*fd;
@@ -12,6 +13,7 @@ class noeud {
 public:
     noeud(); //constructeur par défaut
     noeud(char caractere); //constructeur avec paramètre
+    void afficher(); //afficher le noeud
 
     ~noeud(); //destructeur de noeud
 
