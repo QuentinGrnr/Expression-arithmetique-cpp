@@ -23,6 +23,7 @@ public:
     void deriver(); //deriver l'arbre
     noeud *deriverRecursive(noeud* current); //deriver l'arbre recursivement a partir d'un noeud
 
+    void deleteTree (noeud *noeudActuel); //supprimer l'arbre recursivement a partir d'un noeud
     ~arbre(); //destructeur
 };
 

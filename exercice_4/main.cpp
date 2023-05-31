@@ -10,10 +10,10 @@ cout  << "=========================================Question 4===================
     arbre *A = new arbre (expinf);
     cout << endl;
     A->afficher();
-    cout << endl;
-    cout << "expression infixe de votre arbre : ";
+    cout << endl << "expression infixe de votre arbre : ";
     A->afficherInfixe();
     cout << endl;
     A->deriver();
+    cout << endl;
     delete A;
 }

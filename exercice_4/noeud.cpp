@@ -39,6 +39,6 @@ void noeud::afficher() { //afficher le noeud
 }
 
 noeud::~noeud() { //destructeur de noeud
-    delete fg;
-    delete fd;
+        delete this->fg;
+        delete this->fd;
 }
