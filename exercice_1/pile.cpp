@@ -11,12 +11,10 @@ pile::pile() {
 void pile::empiler(string val) {
     if (this->vide()) {
         caractere *o = new caractere(val);
-        cout << "La valeur empilee est " << val << endl;
         this->head = o;
     } else {
         caractere *o = new caractere(val, this->head);
         this->head = o;
-        cout << "La valeur empilee est " << val << endl;
     }
     this->nb_caractere++;
 }
@@ -31,7 +29,6 @@ string pile::depiler() {
         this->head = this->head->suivant;
         delete o;
         this->nb_caractere--;
-        cout << "La valeur depilee est " << val << endl;
         return val;
     }
 }
@@ -46,7 +43,7 @@ bool pile::vide() {
 
 void pile::afficher() {
     if (this->vide()) {
-        cout << "La pile est vide" << endl;
+        return ;
     } else {
         caractere *o = this->head;
         while (o != nullptr) {
@@ -59,12 +56,9 @@ void pile::afficher() {
 void pile::evaluer(string expression) {
     string op = "";
     for (int i = 0; i < expression.length(); i++) {
-        cout << expression[i] << endl;
         if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '/') {
             int b = stoi(this->depiler());
-            cout << "b = " << b << endl;
             int a = stoi(this->depiler());
-            cout << "a = " << a << endl;
             if (expression[i] == '+') {
                 this->empiler(to_string(a + b));
             } else if (expression[i] == '-') {
@@ -89,10 +83,8 @@ void pile::evaluer(string expression) {
 
 caractere *pile::getHead() {
     if (this->head != nullptr) {
-        cout << "La valeur au sommet de la pile est " << this->head->valeur << endl;
         return this->head;
     } else {
-        cout << "La pile est vide" << endl;
         return nullptr;
     }
 }
