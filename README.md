@@ -1,4 +1,4 @@
-Projet de fin de séquence UE Programmation Orientée Objet C++ 2023 - Garnier Quentin
+# Projet de fin de séquence UE Programmation Orientée Objet C++ 2023 - Garnier Quentin
 
 Afin de pouvoir conserver chaque réponses aux questions du sujet, je placé chaques fonctionnalitées demandées dans chaque exercices dans plusieurs dossiers différents portant le nom de l'exercice en question.
 Chacun de ces dossiers contient un fichier main.cpp qui permet de tester les fonctionnalitées demandées.
@@ -29,3 +29,5 @@ exemple d'entrée : 2*X*7^5/(9*X^2-5+3)
 ### Dérivation d'une expression infixé et affichage de l'arbre binaire correspondant et de l'expression infixé dérivée :
 Au lancement du programme il vous sera demander d'entrer une expression infixé. Dans un premier temps, le programme effectura les même taches qu'a l'exercice 3, puis l'arbre de l'expression dérivée sera affiché, et enfin, l'expression infixé dérivée sera affichée.
 exemple d'entrée : 2*X*7^5/(9*X^2-5+3)
+
+![image](https://github.com/ClueXIII/Expression-arithm-tique-cpp/assets/109299545/99814e09-c7a8-435d-8db8-ad4693a6a43e)
