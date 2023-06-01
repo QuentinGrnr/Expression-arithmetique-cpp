@@ -9,27 +9,27 @@ pile::pile() {
 }
 
 void pile::empiler(string val) {
-    if (this->vide()) {
-        caractere *o = new caractere(val);
-        this->head = o;
+    if (this->vide()) { //si la pile est vide
+        caractere *o = new caractere(val);//on crée un nouveau caractere
+        this->head = o;//on affecte le nouveau caractere à la tete de la pile
     } else {
-        caractere *o = new caractere(val, this->head);
-        this->head = o;
+        caractere *o = new caractere(val, this->head); //on crée un nouveau caractere avec le caractere suivant qui est la tete de la pile
+        this->head = o; //on affecte le nouveau caractere
     }
-    this->nb_caractere++;
+    this->nb_caractere++; //on incrémente le nombre de caractere
 }
 
 string pile::depiler() {
-    if (this->vide()) {
+    if (this->vide()) { //si la pile est vide
         cout << "La pile est vide, la valeur renvoyee est une valeur par defaut (-1)" << endl;
         return "error";
-    } else {
-        string val = this->head->valeur;
-        caractere *o = this->head;
-        this->head = this->head->suivant;
-        delete o;
-        this->nb_caractere--;
-        return val;
+    } else { //si la pile n'est pas vide
+        string val = this->head->valeur; //on récupère la valeur du caractere à la tete de la pile
+        caractere *o = this->head; //on crée un pointeur vers le caractere à la tete de la pile
+        this->head = this->head->suivant; //on affecte le caractere suivant à la tete de la pile
+        delete o; //on supprime le caractere à la tete de la pile
+        this->nb_caractere--; //on décrémente le nombre de caractere
+        return val; //on retourne la valeur du caractere à la tete de la pile
     }
 }
 
@@ -54,12 +54,13 @@ void pile::afficher() {
 }
 
 void pile::evaluer(string expression) {
-    string op = "";
-    for (int i = 0; i < expression.length(); i++) {
-        if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '/') {
-            int b = stoi(this->depiler());
-            int a = stoi(this->depiler());
-            if (expression[i] == '+') {
+    string op = ""; //opérande qui permet de stocker les nombres
+    for (int i = 0; i < expression.length(); i++) { //on parcourt la chaine de caractere
+        if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '/') { //si le caractere est un opérateur
+            int b = stoi(this->depiler()); //on dépile le premier nombre
+            int a = stoi(this->depiler()); //on dépile le deuxième nombre
+            cout << a << " " << expression[i] << " " << b << endl;
+            if (expression[i] == '+') { //on effectue l'opération en fonction de l'opérateur et on empile le resultat
                 this->empiler(to_string(a + b));
             } else if (expression[i] == '-') {
                 this->empiler(to_string(a - b));
@@ -68,7 +69,7 @@ void pile::evaluer(string expression) {
             } else if (expression[i] == '/') {
                 this->empiler(to_string(a / b));
             }
-        } else {
+        } else { //si le caractere est un nombre
             op = expression[i];
             while (expression[i+1] != ' ') { // tant que l'opérande n'est pas fini
                  op += expression[i+1]; // on ajoute le caractère suivant à l'opérande

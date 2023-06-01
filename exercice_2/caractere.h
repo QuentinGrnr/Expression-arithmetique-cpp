@@ -4,7 +4,7 @@
 using namespace std;
 
 class caractere {
-    string valeur;
+    string valeur; //valeur du caractere
     caractere *suivant;
 public:
     caractere();
