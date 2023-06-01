@@ -1,6 +1,7 @@
 #include "pile.h"
 #include <iostream>
 #include <string>
+#include <cmath>
 using namespace std;
 
 pile::pile() {
@@ -56,7 +57,7 @@ void pile::afficher() {
 void pile::evaluer(string expression) {
     string op = ""; //opérande qui permet de stocker les nombres
     for (int i = 0; i < expression.length(); i++) { //on parcourt la chaine de caractere
-        if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '/') { //si le caractere est un opérateur
+        if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '/' || expression[i] == '^' ) { //si le caractere est un opérateur
             int b = stoi(this->depiler()); //on dépile le premier nombre
             int a = stoi(this->depiler()); //on dépile le deuxième nombre
             cout << a << " " << expression[i] << " " << b << endl;
@@ -68,6 +69,8 @@ void pile::evaluer(string expression) {
                 this->empiler(to_string(a * b));
             } else if (expression[i] == '/') {
                 this->empiler(to_string(a / b));
+            } else if (expression[i] == '^') {
+                this->empiler(to_string(pow(a, b)));
             }
         } else { //si le caractere est un nombre
             op = expression[i];

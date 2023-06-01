@@ -13,25 +13,13 @@ outputChain::outputChain() { //constructeur sans argument
 
 void outputChain::add(noeud *newN) { //ajouter un noeud a la chaine
     if (this->nb_noeuds == 0) { //si la chaine est vide
-       // if (newN->type== 'o') {
             this->tail = newN;
             this->head = newN;
             this->nb_noeuds++;
-        /*} else {
-            this->tail = newN;
-            this->head = newN;
-            this->nb_noeuds++;
-        }*/
     } else { //si la chaine n'est pas vide
-        //if (newN->type == 'o') {
             this->tail->Osuivant = newN;
             this->nb_noeuds++;
             this->tail = this->tail->Osuivant;
-        /*} else {
-            this->tail->Osuivant = newN;
-            this->nb_noeuds++;
-            this->tail = this->tail->Osuivant;
-        }*/
     }
 }
 

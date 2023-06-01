@@ -9,6 +9,7 @@ cout  << "=========================================Question 4===================
     cin >> expinf;
     arbre *A = new arbre (expinf);
     cout << endl;
+    cout << "l'arbre de votre expression : " << endl;
     A->afficher();
     cout << endl << "expression infixe de votre arbre : ";
     A->afficherInfixe();

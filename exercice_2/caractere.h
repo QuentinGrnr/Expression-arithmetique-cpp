@@ -5,14 +5,14 @@ using namespace std;
 
 class caractere {
     string valeur; //valeur du caractere
-    caractere *suivant;
+    caractere *suivant; //pointeur vers le caractere suivant
 public:
-    caractere();
-    caractere(string valeur);
-    caractere(string valeur, caractere *suivant);
-    ~caractere();
-    friend class pile;
-    friend class outputChain;
+    caractere(); //constructeur par defaut
+    caractere(string valeur); //constructeur avec parametre (valeur)
+    caractere(string valeur, caractere *suivant); //constructeur avec parametres (valeur et suivant)
+    ~caractere(); //delete
+    friend class pile; //pile est une classe amie de caractere
+    friend class outputChain; //outputChain est une classe amie de caractere
 };
 
 

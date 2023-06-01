@@ -35,7 +35,6 @@ arbre::arbre(string expinf){
 
 void arbre::afficher() { //méthode d'affichage de l'arbre recursive
     if (racine != nullptr) {
-        cout << "L'arbre de votre expression  : " << endl;
         afficherRecursive(racine, "", true);
     }
 }
@@ -68,15 +67,15 @@ void arbre::afficherInfixe() {
     }
 }
 
-void arbre::afficherInfixe(noeud* noeudActuel) {
-    if (noeudActuel != nullptr) {
-        if (noeudActuel->type == 'r') {
-            cout << noeudActuel->val;
-        } else if (noeudActuel->type == 'v') {
-            cout << noeudActuel->var;
+void arbre::afficherInfixe(noeud* noeudActuel) { //méthode d'affichage sous forme infixe de l'arbre recursive
+    if (noeudActuel != nullptr) { //si le noeud n'est pas nul
+        if (noeudActuel->type == 'r') { //si le noeud est un nombre
+            cout << noeudActuel->val; //on affiche le nombre
+        } else if (noeudActuel->type == 'v') { //si le noeud est une variable
+            cout << noeudActuel->var;   //on affiche la variable
         } else if (noeudActuel->type == 'o' && (noeudActuel->fd->type == 'r' || noeudActuel->fd->type == 'v') && (noeudActuel->fg->type == 'r' || noeudActuel->fg->type == 'v')) { //si le noeud est un opérateur et que ses fils sont des nombres/var, on affiche l'opérateur et ses fils
-            afficherInfixe(noeudActuel->fg);
-            cout << " " << noeudActuel->ope << " ";
+            afficherInfixe(noeudActuel->fg); //appel de la méthode recursive
+            cout << " " << noeudActuel->ope << " "; //on affiche l'opérateur
             afficherInfixe(noeudActuel->fd);
         } else { //sinon on affiche l'opérateur et ses fils entre parenthèses
             cout << "(";
@@ -90,33 +89,33 @@ void arbre::afficherInfixe(noeud* noeudActuel) {
 
 void arbre::deriver(){
     if (racine != nullptr) { //méthode de dérivation de l'arbre recursive
-        cout << "L'arbre representant votre derivee : ";
+        cout << "L'arbre representant votre derivee : " << endl;
         noeud* deriveRacine = deriverRecursive(this->racine); //appel de la méthode recursive
         arbre *deriveA = new arbre (deriveRacine);
         deriveA->afficher();
         cout << endl;
-        cout << "L'expression infixe de votre derivee : ";
+        cout << "L'expression infixe de votre derivee : " << endl;
         deriveA->afficherInfixe();
     }
 }
 
 noeud* arbre::deriverRecursive(noeud *current) {
 
-    if (current->type == 'r') {
-        noeud* deriv = new noeud('0');
-        return deriv;
+    if (current->type == 'r') { //si le noeud est un nombre, sa dérivée est 0
+        noeud* deriv = new noeud('0'); //on crée un noeud qui contient 0
+        return deriv; //on retourne le noeud
     }
-    else if (current->type == 'v') {
-        noeud* deriv = new noeud('1');
-        return deriv;
+    else if (current->type == 'v') {    //si le noeud est une variable, sa dérivée est 1
+        noeud* deriv = new noeud('1'); //on crée un noeud qui contient 1
+        return deriv; //on retourne le noeud
     }
     else {
         if (current->ope == '+' || current->ope == '-') {
-            noeud* deriv = new noeud(current->ope);
-            deriv->fg = deriverRecursive(current->fg);
-            deriv->fd = deriverRecursive(current->fd);
-            return deriv;
-        }else if (current->ope == '*') {
+            noeud* deriv = new noeud(current->ope); //on crée un noeud qui contient l'opérateur
+            deriv->fg = deriverRecursive(current->fg); //on dérive le fils gauche
+            deriv->fd = deriverRecursive(current->fd); //on dérive le fils droit
+            return deriv; //on retourne le noeud
+        }else if (current->ope == '*') { //si l'opérateur est une multiplication on code sous forme d'arbre la dérivée de la multiplication
             noeud* deriv = new noeud('+');
             deriv->fg = new noeud('*');
             deriv->fg->fg = deriverRecursive(current->fg);
@@ -127,7 +126,7 @@ noeud* arbre::deriverRecursive(noeud *current) {
             deriv->fd->fd = deriverRecursive(current->fd);
 
             return deriv;
-        }else if (current->ope == '/') {
+        }else if (current->ope == '/') { //si l'opérateur est une division on code sous forme d'arbre la dérivée de la division
             noeud* deriv = new noeud('/');
             deriv->fg = new noeud('-');
             deriv->fg->fg = new noeud('*');
@@ -144,14 +143,14 @@ noeud* arbre::deriverRecursive(noeud *current) {
 
             return deriv;
         }
-        else if (current->ope == '^') {
-            float exposant = current->fd->val;
+        else if (current->ope == '^') { //si l'opérateur est une puissance on code sous forme d'arbre la dérivée de la puissance
+            float exposant = current->fd->val; //on récupére l'exposant
 
-            if (exposant == 0) {
-                noeud* deriv = new noeud('1');
+            if (exposant == 0) { //si l'exposant est 0, la dérivée est 0
+                noeud* deriv = new noeud('0');
                 return deriv;
             }
-            else {
+            else {//sinon on code la dérivée de la puissance
                 noeud* deriv = new noeud('*');
                 deriv->fg = new noeud('*');
                 deriv->fg->fg = new noeud('0');//on met 0 pour le moment car on ne peut pas mettre un float en caractére
@@ -165,12 +164,10 @@ noeud* arbre::deriverRecursive(noeud *current) {
             }
         }
     }
-    return nullptr;
+    return nullptr; //on retourne le noeud null dans le cas où il y a une erreur
 }
 
 arbre::~arbre() {
     delete racine;
     cout << "Destruction de l'arbre" << endl;
 }
-
-//8*X/9*X

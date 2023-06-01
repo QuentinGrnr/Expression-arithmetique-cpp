@@ -6,16 +6,16 @@ using namespace std;
 //premier entré premier sorti
 
 class pile {
-    caractere *head;
-    int nb_caractere;
+    caractere *head; //pointeur vers le premier caractere de la pile
+    int nb_caractere; //nombre de caractere dans la pile
 public:
-    pile();
-    void empiler(string operande);
-    string depiler();
-    bool vide();
-    caractere *getHead();
-    void afficher();
-    void evaluer(string expression);
+    pile(); //constructeur par defaut
+    void empiler(string operande); //ajoute un caractere à la pile
+    string depiler(); //supprime un caractere de la pile
+    bool vide();    //verifie si la pile est vide
+    caractere *getHead(); //retourne le premier caractere de la pile
+    void afficher(); //affiche la pile
+    void evaluer(string expression); //évalue une expression arithmétique suffixée
 };
 
 #endif

@@ -5,7 +5,9 @@ using namespace std;
 
 int main(){
 cout  << "=========================================Question 2========================================="<<endl;
+    cout << "entrez une expression arithmetique infixe : ";
     outputChain o; //creation d'une chaine de sortie
-    o.InfToSuf("88+9*(555+9-5)*8"); //appel de la methode InfToSuf qui transforme une expression infixe en expression suffixée
+    string expression;
+    getline(cin, expression); //recuperation de l'expression arithmetique
+    o.InfToSuf(expression); //appel de la methode InfToSuf qui transforme une expression infixe en expression suffixée
 }
-     //88 9 555 9 +5 -*8 *+
